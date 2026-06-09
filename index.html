@@ -187,14 +187,17 @@ if(bird==="hummingbird"){
     habitatAudio.src="forest.mp3";
     body.style.backgroundImage="url('forest.jpeg')";
 }
+ 
+const params = new URLSearchParams(window.location.search);
+const selectedBird = params.get("bird");
 
+if(selectedBird){
+    changeBird(selectedBird);
 }
 
 habitatAudio.src="arctic.mp3";
 
 function playSound(){
-    habitatAudio.play();
-}
 
 </script>
 
