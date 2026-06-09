@@ -1,151 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Planet of the Aves AR</title>
-
-<script type="module"
-src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
-</script>
-
-<style>
-
-@font-face {
-    font-family: 'BowlbyOneSC';
-    src: url('BowlbyOneSC-Regular.ttf') format('truetype');
-}
-
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    text-align:center;
-
-    background-image:url('arctic.jpeg');
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    background-attachment:fixed;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.35);
-    z-index:-1;
-}
-
-h1{
-    margin-top:20px;
-    color:white;
-    font-family:'BowlbyOneSC', sans-serif;
-    letter-spacing:2px;
-    text-shadow:2px 2px 8px rgba(0,0,0,0.8);
-}
-
-.controls{
-    margin:15px;
-}
-
-button{
-    padding:10px 20px;
-    margin:5px;
-
-    border:1px solid rgba(255,255,255,0.4);
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-size:16px;
-    font-weight:bold;
-
-    background:rgba(255,255,255,0.12);
-    color:white;
-    text-shadow:1px 1px 4px rgba(0,0,0,0.8);
-
-    backdrop-filter:blur(10px);
-
-    transition:0.3s;
-}
-
-button:hover{
-    transform:scale(1.05);
-    background:rgba(255,255,255,0.22);
-}
-
-model-viewer{
-    width:90%;
-    height:60vh;
-    margin:auto;
-    border-radius:20px;
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(10px);
-    box-shadow:0 8px 20px rgba(0,0,0,0.3);
-}
-
-.info{
-    margin:15px auto;
-    padding:15px;
-    width:80%;
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(10px);
-    border-radius:20px;
-    color:white;
-    box-shadow:0 8px 20px rgba(0,0,0,0.25);
-}
-
-</style>
-
-</head>
-
-<body>
-
-<h1>Planet of the Aves AR</h1>
-
-<div class="controls">
-
-<button onclick="changeBird('penguin')">🐧 Penguin</button>
-<button onclick="changeBird('flamingo')">🦩 Flamingo</button>
-<button onclick="changeBird('ostrich')">🦤 Ostrich</button>
-<button onclick="changeBird('hummingbird')">🐦 Hummingbird</button>
-
-</div>
-
-<model-viewer
-id="viewer"
-src="penguin.glb"
-ar
-ar-modes="webxr scene-viewer"
-camera-controls
-auto-rotate>
-
-<button slot="ar-button">
-View in AR
-</button>
-
-</model-viewer>
-
-<div class="info">
-
-<h2 id="birdTitle">Penguin</h2>
-
-<p id="birdDesc">
-Habitat: Arctic Area
-</p>
-
-<button onclick="playSound()">
-🔊 Play Habitat Sound
-</button>
-
-</div>
-
-<audio id="habitatAudio"></audio>
-
 <script>
 
 const viewer = document.getElementById("viewer");
@@ -187,19 +39,13 @@ if(bird==="hummingbird"){
     habitatAudio.src="forest.mp3";
     body.style.backgroundImage="url('forest.jpeg')";
 }
- 
-const params = new URLSearchParams(window.location.search);
-const selectedBird = params.get("bird");
 
-if(selectedBird){
-    changeBird(selectedBird);
 }
 
 habitatAudio.src="arctic.mp3";
 
 function playSound(){
+    habitatAudio.play();
+}
 
 </script>
-
-</body>
-</html>
